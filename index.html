@@ -1,5 +1,3 @@
-            
-            
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -274,10 +272,6 @@ input[type="radio"]{ position:absolute; left:-9999px }
     <div class="row" style="margin-top:16px">
       <label class="btn" for="s4">Open it</label>
       <label class="btn alt" for="s3">No ty</label>
-<audio id="birthdayMusic" preload="auto" loop>
-  <source src="Gsong.mp3" type="audio/mpeg">
-</audio>
-
     </div>
   </div>
 </section>
@@ -369,6 +363,11 @@ input[type="radio"]{ position:absolute; left:-9999px }
       popup.style.display = "none";
     }
   });
+
+<audio id="birthdayMusic" preload="auto" loop>
+  <source src="Gsong.mp3" type="audio/mpeg">
+</audio>
+
   window.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.querySelector('label[for="s2"]');
     const music = document.getElementById('birthdayMusic');
