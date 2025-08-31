@@ -1,0 +1,383 @@
+            
+            
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday – My Baby ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1:#ffeef5;
+      --bg-2:#ffd6e7;
+      --text:#3a2c35;
+      --muted:#6f5c65;
+      --primary:#ff7fb4;
+      --primary-2:#ff9dcc;
+      --accent:#8be0d4;
+      --white:#fff;
+      /* ----- Replace with your own HD images if you like ----- */
+      --img-puppy: url("sfoto1.jpg"); /* puppy with cake */
+      --img-envelope: url("amlp.jpg"); /* pink envelope */
+      --img-cry: url("sfoto3.jpg"); /* cute plush / sad vibe */
+      --img-lace: url("https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=1200&auto=format&fit=crop"); /* lace background */
+    }/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; 
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji', 'Segoe UI Symbol';
+  color:var(--text);
+  background: radial-gradient(1200px 1200px at 70% -10%, var(--bg-2), transparent 60%), linear-gradient(180deg, var(--bg-1), #fff5fb);
+}
+
+.center{min-height:100%; display:grid; place-items:center; padding:24px}
+
+/* Card */
+.card{
+  width:min(720px, 92vw);
+  background:var(--white);
+  border-radius:28px;
+  box-shadow:0 20px 60px rgba(255, 79, 143, .15), 0 10px 24px rgba(0,0,0,.06);
+  padding:32px 26px 36px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border:1px solid #ffe1f0;
+}
+.title{font-weight:900; font-family:'Nunito', sans-serif; font-size:clamp(26px, 4vw, 40px); letter-spacing:.2px; margin:8px 0 6px}
+.subtitle{font-weight:800; color:var(--primary); font-size:clamp(22px, 3.4vw, 34px); margin:0 0 8px}
+.desc{color:var(--muted); font-size:clamp(14px, 2.2vw, 16px); margin:14px 0 26px}
+
+/* Avatar/Icon */
+.icon{
+  width:140px; height:140px; margin:0 auto 12px; border-radius:22px; overflow:hidden; border:6px solid #fff; box-shadow:0 12px 28px rgba(0,0,0,.08);
+  background-size:cover; background-position:center;
+}
+.icon.puppy{ background-image:var(--img-puppy) }
+.icon.envelope {width:200px; height:140px; margin:0 auto 12px; border-radius:2px; overflow:hidden; border:0px solid #fff; box-shadow:0 12px 28px rgba(0,0,0,.08);
+  background-size:cover; background-position:center;
+   background-image:var(--img-envelope) }
+.icon.cry{ background-image:var(--img-cry) }
+
+/* Buttons */
+.btn{
+  display:inline-block; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;
+  padding:14px 26px; border-radius:999px; border:none; font-weight:700; letter-spacing:.3px; font-size:16px;
+  color:#fff; background:linear-gradient(180deg, var(--primary-2), var(--primary)); box-shadow:0 10px 22px rgba(255, 79, 143, .25);
+  transition: transform .15s ease, box-shadow .15s ease, filter .2s ease; text-decoration:none;
+}
+.btn:hover{ transform:translateY(-1px); box-shadow:0 14px 28px rgba(255, 79, 143, .3)}
+.btn:active{ transform:translateY(0)}
+.btn.alt{ background:linear-gradient(180deg, #a6efe5, #76d7c7); color:#12423c; box-shadow:0 10px 22px rgba(118,215,199,.25)}
+
+/* Layout helpers */
+.row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
+
+/* Screens (CSS-only navigation using radio buttons) */
+input[type="radio"]{ position:absolute; left:-9999px }
+.screen{ display:none }
+#s1:checked ~ .screens #home{ display:block }
+#s2:checked ~ .screens #envelope{ display:block }
+#s3:checked ~ .screens #sad{ display:block }
+#s4:checked ~ .screens #message{ display:block }
+#s5:checked ~ .screens #popupScreen { display:block }
+
+/* Special screen stylings */
+.lace-top{
+  position:absolute; inset:0 0 auto 0; height:120px; background-image:var(--img-lace);
+  background-size:cover; background-position:center; filter:opacity(.22) saturate(0.8); pointer-events:none
+}
+
+/* Modal for message screen */
+.modal-wrap{ position:relative }
+.backdrop{ position:fixed; inset:0; background:rgba(23, 16, 20, .55); display:grid; place-items:center; padding:0px }
+.modal{ width:min(720px, 92vw); background:#fff; border-radius:22px; box-shadow:0 30px 100px rgba(0,0,0,.32); padding:20px 0 0; overflow:hidden; border:1px solid #ffd8eb }
+.modal .ribbon{ height:140px; background-image:var("bingkai.png"); background-size:cover; background-position:center; filter:opacity(.25) saturate(.9) }
+.modal .content{ padding:28px 22px 24px }
+.modal h2{ margin:0 0 10px; color:#7e3a58; font-size:clamp(20px, 3.2vw, 28px) }
+.modal p{ color:#5e4b54; line-height:1.75; margin:12px auto; max-width:56ch }
+.close{
+  position:absolute; top:14px; right:14px; display:inline-grid; place-items:center; width:42px; height:42px;
+  border-radius:50%; background:#ffe6f2; box-shadow:0 6px 18px rgba(0,0,0,.08);
+  font-weight:900; color:#7a4b60; cursor:pointer; border:1px solid #ffd8eb
+}
+/* Modal ke-4 dengan background */
+#message .modal {
+  background: url("bingkai.jpg") no-repeat center top;
+  background-size: cover;
+  background-attachment: scroll; /* ikut scroll bareng teks */
+  border-radius: 22px;
+  box-shadow: 0 30px 100px rgba(0,0,0,.32);
+  border: 1px solid #ffd8eb;
+  padding: 0; /* hapus jarak top */
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+/* Content langsung nempel ke atas */
+#message .modal .content {
+  margin: 0;
+  padding: 16px 20px; /* kecilin padding biar rapat */
+  overflow-y: auto;
+}
+/* Tiny footer bubble */
+.floating{
+  position:fixed; right:16px; bottom:16px; width:54px; height:54px; border-radius:50%; background:linear-gradient(180deg,var(--primary-2),var(--primary));
+  display:grid; place-items:center; color:#fff; font-weight:900; box-shadow:0 14px 30px rgba(255,79,143,.34); border:2px solid #fff8fd
+}
+
+/* Responsive tweaks */
+@media (max-width:480px){
+  .icon{ width:120px; height:120px }
+}
+
+
+  </style>
+    <style>
+    /* Tambahan agar modal bisa discroll di Android */
+    .modal {
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal .content {
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    /* Sembunyikan audio */
+    audio { display: none; }
+  </style>
+
+<script>
+  const nextBtn = document.querySelector('label[for="s2"]');
+  const music = document.getElementById('birthdayMusic');
+  nextBtn.addEventListener('click', () => {
+    music.play().catch(e => console.log("Autoplay blocked:", e));
+  });
+</script>
+
+<style>
+  /* Extra responsive tweaks */
+  @media (max-width: 400px){
+    .title { font-size: 22px !important; }
+    .subtitle { font-size: 18px !important; }
+    .desc { font-size: 13px !important; }
+    .btn { font-size: 14px; padding: 12px 20px; }
+  }
+</style>
+
+<!-- Tambahkan di dalam <head> -->
+<style>
+  /* Popup sembunyi default */
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .popup img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+  .popup .close {
+    position: absolute;
+    top: 16px;
+    right: 22px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  
+  
+  
+  
+.frame-container {
+  position: relative;
+  width: 300px;   /* atur sesuai ukuran bingkai */
+  height: 400px;  /* atur sesuai ukuran bingkai */
+  margin: 0 auto;
+}
+
+/* Foto ada di belakang bingkai */
+.photo-slot {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: 75%;   /* biar muat di dalam bingkai */
+  height: 70%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  border-radius: 10px;
+  z-index: 1; /* foto di bawah bingkai */
+}
+
+.photo-slot img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.photo-slot img.active {
+  opacity: 1;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; 
+  pointer-events: none;
+}
+</style>
+
+</head>
+
+<body>
+  <!-- CSS-only state machine -->
+  <input type="radio" name="state" id="s1" checked>
+  <input type="radio" name="state" id="s2">
+  <input type="radio" name="state" id="s3">
+  <input type="radio" name="state" id="s4">
+  <input type="radio" name="state" id="s5"> <div class="screens">
+    <section id="home" class="center screen">
+      <div class="card">
+        <div class="icon puppy" role="img" aria-label="puppy with birthday cake"></div>
+        <h1 class="title">Happy Birthday</h1>
+        <h2 class="subtitle">my baby! (｡◕‿◕｡)</h2>
+        <p class="desc">Click the next button!! (づ｡◕‿‿◕｡)づ♡</p>
+        <label class="btn" for="s2">Next!! ♪～♪</label>
+      </div>
+    </section>
+<section id="envelope" class="center screen">
+  <div class="card">
+    <div class="icon envelope" role="img" aria-label="pink envelope"></div>
+    <h1 class="title">Do you want to open it?<br>“ヾ(✿ﾟ▽ﾟ)ノ”</h1>
+    <div class="row" style="margin-top:16px">
+      <label class="btn" for="s4">Open it</label>
+      <label class="btn alt" for="s3">No ty</label>
+<audio id="birthdayMusic" preload="auto" loop>
+  <source src="Gsong.m4a" type="audio/mpeg">
+</audio>
+
+    </div>
+  </div>
+</section>
+<section id="sad" class="center screen">
+  <div class="card">
+    <div class="icon cry" role="img" aria-label="crying cute mascot"></div>
+    <h1 class="title">Awh.. Let's try again?<br>PLEASEE?</h1>
+    <label class="btn" for="s1">Again..?</label>
+  </div>
+</section>
+<section id="message" class="center screen">
+  <div class="modal-wrap">
+    <div class="backdrop">
+      <div class="modal" role="dialog" aria-modal="true">
+       <!-- <label class="close" for="s2" aria-label="Close">×</label> -->
+        <div class="ribbon" aria-hidden="true"></div>
+        <div class="content">
+          
+          <h2>Ooo... A message (ﾉ˶>ᵕ<˶)ﾉ♡ !!</h2>
+          <p><strong>Happy Birthday, My Honey... ♡</strong></p>
+          <p>Hari ini semua tentang kamu—the most special person in my life. Aku merasa sangat beruntung bisa memanggilmu mine, walaupun kita belum pernah benar-benar bertemu ahhaahha</p>
+          <p>You’ve shown me what love feels like, hanya lewat kata-kata, perhatian, dan rasa yang kamu beri. Setiap harinya, aku makin yakin kalau kamu adalah bagian terindah dalam hidupku..🫶</p>
+          <p>Aku cinta segalanya tentangmu: your smile that I always imagine, your laugh that I dream to hear, your kindness, your strength. Kamu buat aku merasa dihargai, dicintai, dan istimewa, bahkan tanpa harus berjumpa dulu.</p>
+          <p>On your special day, I just want to say thank you. Terima kasih sudah jadi dirimu. Terima kasih karena membiarkanku jatuh cinta sama kamu. Dan terima kasih karena kamu juga sayang sama aku..🤗</p>
+          <p><em>Happy Birthday, my heart. I love you endlessly. ❤️</em></p>
+          <div class="row" style="margin:20px 0 26px">
+           <!-- <label class="btn alt" for="s2">Back to envelope</label> -->
+<p>
+  Klik di sini untuk lihat hadiah spesial →  
+  <label for="s5" style="color:#ff7fb4; font-weight:bold; text-decoration:underline; cursor:pointer;">
+    🎁 Surprise!!
+  </label>
+</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</section>
+<!-- Screen 5: Popup image -->
+<!-- Screen 5: Popup image -->
+<section id="popupScreen" class="center screen">
+ EROR AHAHAH
+ <!--<div class="frame-container">
+    <div class="photo-slot">
+      <img src="foto1.jpg" alt="Foto 1" class="slideshow active">
+      <img src="foto2.jpg" alt="Foto 2" class="slideshow">
+      <img src="foto3.jpg" alt="Foto 3" class="slideshow">
+    </div>
+    <img src="bingkaifoto.png" alt="Bingkai" class="frame">
+  </div>
+
+  <div class="row" style="margin-top:20px">
+    <label class="btn alt" for="s1">Back to Home</label>
+  </div>
+</section> -->
+
+
+
+<script>
+  const slides = document.querySelectorAll('.photo-slot img');
+  let current = 0;
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+  setInterval(nextSlide, 3000);
+  showSlide(current);
+  const popup = document.getElementById("popup");
+  const openBtn = document.getElementById("openPopup");
+  const closeBtn = document.getElementById("closePopup");
+
+  openBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    popup.style.display = "flex";
+  });
+  closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+  });
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      popup.style.display = "none";
+    }
+  });
+  window.addEventListener("DOMContentLoaded", () => {
+    const nextBtn = document.querySelector('label[for="s2"]');
+    const music = document.getElementById('birthdayMusic');
+    if (nextBtn && music) {
+      nextBtn.addEventListener('click', () => {
+        music.play().catch(e => console.log("Autoplay blocked:", e));
+      });
+    }
+  });
+</script>
+</body>
+</html>
